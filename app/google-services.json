@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "967515334558",
+    "firebase_url": "https://dynodash-default-rtdb.firebaseio.com",
+    "project_id": "dynodash",
+    "storage_bucket": "dynodash.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967515334558:android:a1aadcdbf84eeae706588f",
+        "android_client_info": {
+          "package_name": "com.example.dynodash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "967515334558-kf072o86um2m61tho1p8ntiv0euh1aed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCly5nOVBmuVXpQvFXwnXc_K-IBvSMFZec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "967515334558-kf072o86um2m61tho1p8ntiv0euh1aed.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
