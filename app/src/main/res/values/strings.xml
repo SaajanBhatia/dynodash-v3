@@ -10,6 +10,12 @@
     <string name="login_username_placeholder">Username</string>
     <string name="login_password_placeholder">Password</string>
     <string name="register_email_placeholder">Email</string>
+    <string name="register_name_placeholder">Name</string>
+    <string name="restaurant_name_placeholder">Restaurant Name</string>
+    <string name="restaurant_description_placeholder">Description</string>
+    <string name="restaurant_address_placeholder">Address</string>
 
     <!--  General Values  -->
+    <string name="login_to_register_text">New? Create an account</string>
+    <string name="register_to_login_text">Already have an account?</string>
 </resources>

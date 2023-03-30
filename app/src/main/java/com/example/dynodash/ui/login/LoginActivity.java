@@ -4,6 +4,7 @@ package com.example.dynodash.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,7 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dynodash.R;
+import com.example.dynodash.Utilities;
 import com.example.dynodash.ui.customer.CustomerActivity;
+import com.example.dynodash.ui.register.RegisterActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -30,10 +33,10 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText mUsernameEditText;
     private TextInputEditText mPasswordEditText;
     private Button mLoginButton;
+    private Button linkToRegisterButton;
     private TextView mErrorMessageTextView;
 
     private FirebaseAuth mAuth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,16 @@ public class LoginActivity extends AppCompatActivity {
         mPasswordEditText = (TextInputEditText) mPasswordLayout.getEditText();
         mLoginButton = findViewById(R.id.loginButton);
         mErrorMessageTextView = findViewById(R.id.errorMessageTextView);
+
+        linkToRegisterButton = findViewById(R.id.linkToRegisterFrame);
+
+        linkToRegisterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                finish();
+            }
+        });
 
         // Event listener to button
         mLoginButton.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +90,8 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+    // Sign in Function
     private void signInWithEmailAndPassword(String email, String password) {
         // Use the Firebase instance to sign in the user
         mAuth.signInWithEmailAndPassword(email, password)
@@ -87,18 +102,22 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             if (user != null) {
+                                // Extract UID
+                                String uid = new String(user.getUid());
                                 // Get custom role
-                                String role = "CUSTOMER";
+                                String role = Utilities.getUserRole(uid);
+                                Log.d("ROLE from getUserRole", role);
                                 // If Customer inflate the Customer Activity
-                                if (role.equals("CUSTOMER")) {
+                                if (role.equals("customer")) {
                                     Intent intent = new Intent(LoginActivity.this, CustomerActivity.class);
-                                    // Attach the user object to the intent
-                                    intent.putExtra("user", user);
-                                    // Prevent backward bypass once signed in
+                                    intent.putExtra("USER_ID", user.getUid());
+                                    startActivity(intent);
                                     finish();
-                                // If Restaurant inflate the Restaurant Activity
-                                } else if (role.equals("RESTAURANT")) {
+                                } else if (role.equals("restaurant")) {
                                     setContentView(R.layout.customer_layout);
+                                } else {
+                                    Log.d("MyApp", "The account type was unknown");
+                                    Toast.makeText(LoginActivity.this, user.getUid(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         } else {
@@ -109,4 +128,3 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 }
-
