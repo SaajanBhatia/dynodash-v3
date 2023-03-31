@@ -15,6 +15,7 @@ import com.example.dynodash.R;
 import com.example.dynodash.Utilities;
 import com.example.dynodash.ui.customer.CustomerActivity;
 import com.example.dynodash.ui.login.LoginActivity;
+import com.example.dynodash.ui.restaurant.RestaurantActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -169,22 +170,13 @@ public class RegisterActivity extends AppCompatActivity {
                                     if (isRestaurantAccount) {
                                         // Set Restaurant Account Type
                                         Utilities.setUserRole(user.getUid(), restaurantType, name);
-
                                         // Set the restaurant details in the database
                                         Utilities.addRestaurantToDatabase(user.getUid(), restaurantName, restaurantDesc, restaurantAddress);
-
-                                        // Inflate restaurant activity
-                                        setContentView(R.layout.restaurant_layout);
                                     } else {
                                         // Else set customer account type
                                         Utilities.setUserRole(user.getUid(), customerType, name);
-
-                                        // Inflate customer activity
-                                        Intent intent = new Intent(RegisterActivity.this, CustomerActivity.class);
-                                        intent.putExtra("USER_ID", user.getUid());
-                                        startActivity(intent);
-                                        finish();
                                     }
+                                    Utilities.forwardUserOnRole(user.getUid(), RegisterActivity.this);
                                 } else {
                                     // User registration failed, display an error message
                                     Toast.makeText(RegisterActivity.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

@@ -32,6 +32,11 @@
         <!--     Customer Activity Declaration  -->
         <activity android:name=".ui.customer.CustomerActivity" />
 
+        <!--     Restaurant Activity Declaration  -->
+        <activity
+            android:name=".ui.restaurant.RestaurantActivity"
+            android:screenOrientation="portrait" />
+
         <!--     Register Activity Declaration  -->
         <activity
             android:name=".ui.register.RegisterActivity"

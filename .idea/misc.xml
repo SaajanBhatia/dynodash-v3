@@ -4,14 +4,26 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.33" />
+        <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/drawable/ic_barcode_black_24dp.xml" value="0.3925" />
+        <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.3925" />
+        <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.3925" />
         <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/drawable/ic_launcher_background.xml" value="0.33" />
+        <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/drawable/ic_logout_black_24dp.xml" value="0.3915" />
+        <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.3925" />
+        <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/drawable/ic_tables_black_24dp.xml" value="0.3915" />
         <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/drawable/logo.xml" value="0.33" />
         <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/layout/activity_main.xml" value="0.32760416666666664" />
         <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/layout/activity_register.xml" value="0.33" />
         <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/layout/customer_layout.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/layout/loading_frame.xml" value="0.32760416666666664" />
-        <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/layout/restaurant_layout.xml" value="0.5948905109489051" />
+        <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/layout/restaurant_code_fragment.xml" value="0.19047619047619047" />
+        <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/layout/restaurant_layout.xml" value="0.33" />
+        <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/layout/restaurant_logout_fragment.xml" value="0.3446557971014493" />
+        <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/layout/restaurant_menu_fragment.xml" value="0.19047619047619047" />
+        <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/layout/restaurant_orders_fragment.xml" value="0.19047619047619047" />
+        <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/layout/restaurant_tables_fragment.xml" value="0.19047619047619047" />
+        <entry key="..\:/Users/saaja/Documents/Lboro/dynodash/client-v5/app/src/main/res/menu/bottom_nav_menu.xml" value="0.39166666666666666" />
       </map>
     </option>
   </component>

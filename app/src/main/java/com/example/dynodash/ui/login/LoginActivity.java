@@ -102,23 +102,13 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             if (user != null) {
+
                                 // Extract UID
                                 String uid = new String(user.getUid());
-                                // Get custom role
-                                String role = Utilities.getUserRole(uid);
-                                Log.d("ROLE from getUserRole", role);
-                                // If Customer inflate the Customer Activity
-                                if (role.equals("customer")) {
-                                    Intent intent = new Intent(LoginActivity.this, CustomerActivity.class);
-                                    intent.putExtra("USER_ID", user.getUid());
-                                    startActivity(intent);
-                                    finish();
-                                } else if (role.equals("restaurant")) {
-                                    setContentView(R.layout.customer_layout);
-                                } else {
-                                    Log.d("MyApp", "The account type was unknown");
-                                    Toast.makeText(LoginActivity.this, user.getUid(), Toast.LENGTH_SHORT).show();
-                                }
+
+                                // Forward the user to the correct component depending on role (Customer or Restaurant)
+                                Utilities.forwardUserOnRole(uid,LoginActivity.this);
+
                             }
                         } else {
                             // Else return a toast indicating unsuccessful authentication

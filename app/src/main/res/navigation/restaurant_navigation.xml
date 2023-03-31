@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/restaurant_navigation"
+    app:startDestination="@+id/navigation_tables">
+
+    <fragment
+        android:id="@+id/navigation_tables"
+        android:name="com.example.dynodash.ui.restaurant.tables.TablesFragment"
+        android:label="@string/nav_tables_title"
+        tools:layout="@layout/restaurant_tables_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_menu"
+        android:name="com.example.dynodash.ui.restaurant.menu.MenuFragment"
+        android:label="@string/nav_menu_title"
+        tools:layout="@layout/restaurant_menu_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_orders"
+        android:name="com.example.dynodash.ui.restaurant.orders.OrdersFragment"
+        android:label="@string/nav_orders_title"
+        tools:layout="@layout/restaurant_orders_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_code"
+        android:name="com.example.dynodash.ui.restaurant.code.CodeFragment"
+        android:label="@string/nav_codes_title"
+        tools:layout="@layout/restaurant_code_fragment" />
+
+</navigation>
