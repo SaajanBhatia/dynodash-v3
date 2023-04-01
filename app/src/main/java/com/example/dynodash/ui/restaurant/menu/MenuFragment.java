@@ -23,8 +23,7 @@ public class MenuFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.restaurant_menu_fragment, container, false);
-        return root;
+        return inflater.inflate(R.layout.restaurant_menu_fragment, container, false);
     }
 
     @Override
@@ -32,11 +31,7 @@ public class MenuFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Initialize views and setup any necessary listeners or adapters
-    }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(MenuViewModel.class);
         // TODO: Use the ViewModel
     }

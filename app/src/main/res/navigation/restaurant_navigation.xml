@@ -29,4 +29,10 @@
         android:label="@string/nav_codes_title"
         tools:layout="@layout/restaurant_code_fragment" />
 
+    <fragment
+        android:id="@+id/navigation_logout"
+        android:name="com.example.dynodash.ui.restaurant.logout.LogoutFragment"
+        android:label="@string/logout_title"
+        tools:layout="@layout/restaurant_logout_fragment" />
+
 </navigation>

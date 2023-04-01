@@ -10,13 +10,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.dynodash.databinding.RestaurantCodeFragmentBinding;
 
+import com.example.dynodash.R;
 
 public class CodeFragment extends Fragment {
 
     private CodeViewModel mViewModel;
-    private RestaurantCodeFragmentBinding binding;
 
     public static CodeFragment newInstance() {
         return new CodeFragment();
@@ -25,8 +24,7 @@ public class CodeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = RestaurantCodeFragmentBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+        return inflater.inflate(R.layout.restaurant_code_fragment, container, false);
     }
 
     @Override
@@ -34,18 +32,9 @@ public class CodeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Initialize views and setup any necessary listeners or adapters
-    }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(CodeViewModel.class);
         // TODO: Use the ViewModel
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
 }

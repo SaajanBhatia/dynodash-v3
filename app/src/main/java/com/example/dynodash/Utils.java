@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
-public class Utilities {
+public class Utils {
 
     // Get User Role from Real Time Database
     public static void forwardUserOnRole(String uid, AppCompatActivity context) {
@@ -89,6 +89,9 @@ public class Utilities {
         newRestaurantRef.child("name").setValue(name);
         newRestaurantRef.child("description").setValue(description);
         newRestaurantRef.child("address").setValue(address);
+
+        // Set default number of tables as 10
+        newRestaurantRef.child("tables").setValue(10);
     }
 
 //    public interface OnGetNameListener {

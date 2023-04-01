@@ -14,8 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dynodash.R;
-import com.example.dynodash.Utilities;
-import com.example.dynodash.ui.customer.CustomerActivity;
+import com.example.dynodash.Utils;
 import com.example.dynodash.ui.register.RegisterActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -107,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                                 String uid = new String(user.getUid());
 
                                 // Forward the user to the correct component depending on role (Customer or Restaurant)
-                                Utilities.forwardUserOnRole(uid,LoginActivity.this);
+                                Utils.forwardUserOnRole(uid,LoginActivity.this);
 
                             }
                         } else {
