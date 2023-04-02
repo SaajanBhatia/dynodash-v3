@@ -20,6 +20,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/restaurant_menu_list_wrapper"/>
+    <include layout="@layout/restaurant_menu_list_wrapper" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
