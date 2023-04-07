@@ -12,8 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dynodash.R;
-import com.example.dynodash.Utilities;
-import com.example.dynodash.ui.customer.CustomerActivity;
+import com.example.dynodash.Utils;
 import com.example.dynodash.ui.login.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -168,23 +167,14 @@ public class RegisterActivity extends AppCompatActivity {
 
                                     if (isRestaurantAccount) {
                                         // Set Restaurant Account Type
-                                        Utilities.setUserRole(user.getUid(), restaurantType, name);
-
+                                        Utils.setUserRole(user.getUid(), restaurantType, name);
                                         // Set the restaurant details in the database
-                                        Utilities.addRestaurantToDatabase(user.getUid(), restaurantName, restaurantDesc, restaurantAddress);
-
-                                        // Inflate restaurant activity
-                                        setContentView(R.layout.restaurant_layout);
+                                        Utils.addRestaurantToDatabase(user.getUid(), restaurantName, restaurantDesc, restaurantAddress);
                                     } else {
                                         // Else set customer account type
-                                        Utilities.setUserRole(user.getUid(), customerType, name);
-
-                                        // Inflate customer activity
-                                        Intent intent = new Intent(RegisterActivity.this, CustomerActivity.class);
-                                        intent.putExtra("USER_ID", user.getUid());
-                                        startActivity(intent);
-                                        finish();
+                                        Utils.setUserRole(user.getUid(), customerType, name);
                                     }
+                                    Utils.forwardUserOnRole(user.getUid(), RegisterActivity.this);
                                 } else {
                                     // User registration failed, display an error message
                                     Toast.makeText(RegisterActivity.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

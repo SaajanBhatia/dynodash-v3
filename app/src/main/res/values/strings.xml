@@ -5,6 +5,7 @@
     <!--  Titles  -->
     <string name="login_title">Sign In</string>
     <string name="register_title">Sign Up</string>
+    <string name="logout_title">Sign Out</string>
 
     <!--  Text Field Resources  -->
     <string name="login_username_placeholder">Username</string>
@@ -18,4 +19,10 @@
     <!--  General Values  -->
     <string name="login_to_register_text">New? Create an account</string>
     <string name="register_to_login_text">Already have an account?</string>
+
+    <!--  Icon Values  -->
+    <string name="nav_tables_title">Tables</string>
+    <string name="nav_menu_title">Menu</string>
+    <string name="nav_orders_title">Menu</string>
+    <string name="nav_codes_title">Scan</string>
 </resources>
