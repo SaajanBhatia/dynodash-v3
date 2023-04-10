@@ -23,6 +23,6 @@
     <!--  Icon Values  -->
     <string name="nav_tables_title">Tables</string>
     <string name="nav_menu_title">Menu</string>
-    <string name="nav_orders_title">Menu</string>
+    <string name="nav_orders_title">Orders</string>
     <string name="nav_codes_title">Scan</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.dynodash;
 
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -18,6 +19,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.UUID;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -94,11 +99,33 @@ public class Utils {
         newRestaurantRef.child("tables").setValue(10);
     }
 
-//    public interface OnGetNameListener {
-//        void onGetName(String name);
-//
-//        void onGetNameError(String errorMessage);
-//    }
+    public static String generateCUID() {
+        StringBuilder sb = new StringBuilder();
+
+        // Append the device model name
+        sb.append(Build.MODEL);
+
+        // Append the Android version number
+        sb.append(Build.VERSION.RELEASE);
+
+        // Append a random UUID
+        sb.append(UUID.randomUUID().toString());
+
+        // Hash the resulting string using MD5
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] hash = md.digest(sb.toString().getBytes());
+            StringBuilder hex = new StringBuilder(hash.length * 2);
+            for (byte b : hash) {
+                hex.append(String.format("%02X", b & 0xFF));
+            }
+            return hex.toString();
+        } catch (NoSuchAlgorithmException e) {
+            // Handle the error here
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 
 
