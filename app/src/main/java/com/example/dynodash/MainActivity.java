@@ -27,8 +27,15 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, LoginActivity.class));
             finish(); // To prevent them going backwards bypassing the LoginActivity
         }
-
         else {
+            // Get the intent carried by QR code if exists
+            Intent intent = getIntent();
+            if (intent.getData() != null) {
+                String restaurantId = intent.getStringExtra("restaurantId");
+                String table = intent.getStringExtra("table");
+                // Store values to local storage
+            }
+
             // Get account type
             // Forward the user to the correct component depending on role (Customer or Restaurant)
             Utils.forwardUserOnRole(currentUser.getUid(),this);
