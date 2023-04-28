@@ -7,6 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dynodash.R;
 
+/*
+ Main Page for Customer
+ TODO recyclerview for cached locations
+ TODO Search for restaurant name
+*/
+
 public class CustomerActivity extends AppCompatActivity {
 
     @Override

@@ -13,18 +13,20 @@ import com.example.dynodash.R;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CodeListAdapter extends RecyclerView.Adapter<CodeListAdapter.CodeViewHolder> {
 
-    private ArrayList<CodeListItem> mCodeListItems = new ArrayList<CodeListItem>();
+    private List<CodeListItem> mCodeListItems = new ArrayList<>();
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
-        void getCode(CodeListItem item);
+        void getCode(CodeListItem item) throws IOException;
     }
 
-    public void setCodeItems(ArrayList<CodeListItem> codeItems) {
+    public void setCodeItems(List<CodeListItem> codeItems) {
         mCodeListItems = codeItems;
         notifyDataSetChanged();
     }
@@ -57,18 +59,22 @@ public class CodeListAdapter extends RecyclerView.Adapter<CodeListAdapter.CodeVi
             mTableNumber = itemView.findViewById(R.id.table_number);
             mGetTableQR = itemView.findViewById(R.id.generate_qr_button);
 
-//            mGetTableQR.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    int position = getAdapterPosition();
-//                    if (position != RecyclerView.NO_POSITION) {
-//                        CodeListItem codeItem = mCodeListItems.get(position);
-//                        if (mListener != null) {
-//                            // Listener complete Action
-//                        }
-//                    }
-//                }
-//            });
+            mGetTableQR.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        CodeListItem codeItem = mCodeListItems.get(position);
+                        if (mListener != null) {
+                            try {
+                                mListener.getCode(codeItem);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            });
         }
 
         public void bind(CodeListItem codeItem) {

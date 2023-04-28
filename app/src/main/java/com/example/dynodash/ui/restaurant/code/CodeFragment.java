@@ -5,16 +5,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.dynodash.R;
+import com.example.dynodash.ui.restaurant.RestaurantActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,7 +26,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CodeFragment extends Fragment {
 
@@ -46,6 +52,15 @@ public class CodeFragment extends Fragment {
         mCodeListAdapter = new CodeListAdapter();
         mRecyclerView.setAdapter(mCodeListAdapter);
 
+        mCodeListAdapter.setOnItemClickListener(new CodeListAdapter.OnItemClickListener() {
+            @Override
+            public void getCode(CodeListItem item) throws IOException {
+                String table = String.valueOf(item.tableNumber);
+                mViewModel.getBarcode( FirebaseAuth.getInstance().getCurrentUser().getUid(), table);
+                Toast.makeText(getContext(), "Downloaded QR Code", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return root;
     }
 
@@ -55,36 +70,29 @@ public class CodeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Table items
-        ArrayList<CodeListItem> codeList = new ArrayList<CodeListItem>();
+//        ArrayList<CodeListItem> codeList = new ArrayList<CodeListItem>();
+//
+//        CodeListItem item1 = new CodeListItem(1);
+//        codeList.add(item1);
+//
+//        CodeListItem item2 = new CodeListItem(2);
+//        codeList.add(item2);
+//
+//        CodeListItem item3 = new CodeListItem(3);
+//        codeList.add(item3);
+//
+//        mCodeListAdapter.setCodeItems(codeList);
 
-        CodeListItem item1 = new CodeListItem(1);
-        codeList.add(item1);
+        mViewModel = new ViewModelProvider(this).get(CodeViewModel.class);
 
-        CodeListItem item2 = new CodeListItem(2);
-        codeList.add(item2);
+        // Saturate recycler view containing the orders adapter
+        mViewModel.getTableList(FirebaseAuth.getInstance().getUid()).observe(getViewLifecycleOwner(), new Observer<List<CodeListItem>>() {
+            @Override
+            public void onChanged(List<CodeListItem> codeListItems) {
+                mCodeListAdapter.setCodeItems(codeListItems);
+            }
+        });
 
-        CodeListItem item3 = new CodeListItem(3);
-        codeList.add(item3);
-
-        mCodeListAdapter.setCodeItems(codeList);
-
-        // Make reference
-//        databaseReference.child("restaurants").child(restaurantId).child("tables").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                if (!task.isSuccessful()) {
-//                    Log.e("CodeViewModel", "onComplete: Failed to retrieve number of tables" );
-//                } else {
-//                    // Recurse through number of tables, create n objects
-//                    Log.d("DEBUG TAG", "onComplete: Tables: " + String.valueOf(task.getResult().getValue()));
-//                    Integer numTables = Integer.valueOf(String.valueOf(task.getResult().getValue()));
-//                    for (int i = 1; i < numTables; i++) {
-//                        tableItems.add( new CodeListItem(i) );
-//                    }
-//                    mCodeListAdapter.setCodeItems(tableItems);
-//                }
-//            }
-//        });
     }
 
 }

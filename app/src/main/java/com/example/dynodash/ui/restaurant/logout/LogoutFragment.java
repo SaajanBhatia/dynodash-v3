@@ -2,6 +2,7 @@ package com.example.dynodash.ui.restaurant.logout;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,13 +12,18 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.dynodash.MainActivity;
 import com.example.dynodash.R;
+import com.example.dynodash.ui.login.LoginActivity;
 import com.example.dynodash.ui.restaurant.tables.TablesViewModel;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LogoutFragment extends Fragment {
 
     private LogoutViewModel mViewModel;
+    private Button mLogoutButton;
 
     public static LogoutFragment newInstance() {
         return new LogoutFragment();
@@ -26,7 +32,18 @@ public class LogoutFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.restaurant_logout_fragment, container, false);
+        View root = inflater.inflate(R.layout.restaurant_logout_fragment, container, false);
+        mLogoutButton = root.findViewById(R.id.logoutButton);
+
+        mLogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getContext(), LoginActivity.class));
+            }
+        });
+
+        return root;
     }
 
     @Override
