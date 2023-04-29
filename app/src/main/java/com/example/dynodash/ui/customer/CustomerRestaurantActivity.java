@@ -1,4 +1,6 @@
 package com.example.dynodash.ui.customer;
 
-public class CustomerRestaurantActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class CustomerRestaurantActivity extends AppCompatActivity {
 }
