@@ -60,7 +60,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="saajansbhatia@gmail.com"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,7 +78,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:text="Discovery_18"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 

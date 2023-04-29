@@ -39,7 +39,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     @NonNull
     @Override
     public RestaurantsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.customer_restaurant_card, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.customer_restaurant_card_item, parent, false);
         return new RestaurantsViewHolder(itemView, mListener);
     }
 

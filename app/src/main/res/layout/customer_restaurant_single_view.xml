@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Main content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Restaurant details -->
+        <include layout="@layout/customer_restaurant_card_item"/>
+
+        <!-- Restaurant menu items -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/menu_items_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <!-- Checkout button -->
+        <Button
+            android:id="@+id/checkout_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Checkout"/>
+
+    </LinearLayout>
+
+    <!-- Bottom sheet -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bottom_sheet_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_gravity="bottom"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="@color/cardview_dark_background"
+        app:cardElevation="8dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        >
+
+        <LinearLayout
+            android:id="@+id/bottom_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Drawer handle -->
+            <View
+                android:layout_width="48dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"/>
+
+            <TextView
+                android:id="@+id/pull_up_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:text="Press to open and close"
+                android:textColor="@color/white"/>
+
+            <!-- Basket items -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/basket_items_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <!-- Total price -->
+            <TextView
+                android:id="@+id/total_price_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total price: $0.00"
+                android:padding="16dp"/>
+
+            <!-- Checkout button -->
+            <Button
+                android:id="@+id/checkout_button_bottom_sheet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Checkout"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
