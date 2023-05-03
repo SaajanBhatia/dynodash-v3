@@ -1,4 +1,4 @@
-package com.example.dynodash.ui.customer;
+package com.example.dynodash.ui.customer.list;
 
 public class RestaurantListItem {
 

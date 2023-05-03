@@ -4,6 +4,7 @@ public class OrdersSingleFoodItem {
     public String itemName;
     public Integer itemQuantity;
     public Double itemPrice;
+    public String itemID;
 
     public OrdersSingleFoodItem(
             String itemName,

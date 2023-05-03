@@ -40,6 +40,7 @@ public class LogoutFragment extends Fragment {
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(getContext(), LoginActivity.class));
+                getActivity().finish(); // To prevent them going backwards bypassing the LoginActivity
             }
         });
 

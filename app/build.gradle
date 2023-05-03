@@ -59,4 +59,7 @@ dependencies {
     // OkHTTP Client
     implementation 'com.squareup.okhttp3:okhttp:4.9.2'
 
+    // Google JSON
+    implementation 'com.google.code.gson:gson:2.8.7'
+
 }

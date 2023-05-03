@@ -51,6 +51,9 @@
         <!--     Customer Activity Declaration For Single Restaurant View  -->
         <activity android:name=".ui.customer.CustomerRestaurantActivity" />
 
+        <!--     Customer Activity Declaration For Checkout Screen -->
+        <activity android:name=".ui.customer.CustomerRestaurantCheckout" />
+
         <!--     Restaurant Activity Declaration  -->
         <activity
             android:name=".ui.restaurant.RestaurantActivity"

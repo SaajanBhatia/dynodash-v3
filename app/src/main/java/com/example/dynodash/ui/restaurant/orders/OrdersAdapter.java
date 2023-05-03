@@ -11,8 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dynodash.R;
-import com.example.dynodash.ui.restaurant.menu.MenuAdapter;
-import com.example.dynodash.ui.restaurant.menu.MenuRestaurantItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,8 +93,11 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
             mTableNumberTextView.setText("Table: " + String.valueOf(ordersItem.getTableNumber()));
 
             // Bind List Order Items
-            OrdersSingleFoodItemAdapter adapter = new OrdersSingleFoodItemAdapter(itemView.getContext(),
-                    R.layout.restaurant_orders_list_item_single, ordersItem.getOrderedFood());
+            OrdersSingleFoodItemAdapter adapter = new OrdersSingleFoodItemAdapter(
+                    itemView.getContext(),
+                    R.layout.restaurant_orders_list_item_single,
+                    ordersItem.getOrderedFood()
+            );
             mOrderItemsListView.setAdapter(adapter);
 
             // Set the height of the ListView based on the number of items

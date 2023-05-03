@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dynodash.R;
+import com.example.dynodash.ui.customer.list.RestaurantListAdapter;
+import com.example.dynodash.ui.customer.list.RestaurantListItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +87,7 @@ public class CustomerActivity extends AppCompatActivity {
             @Override
             public void onRestaurantClick(RestaurantListItem item) {
                 Intent intent = new Intent(CustomerActivity.this, CustomerRestaurantActivity.class);
+                intent.putExtra("restaurantID", item.getRestaurantID());
                 CustomerActivity.this.startActivity(intent);
             }
         });
