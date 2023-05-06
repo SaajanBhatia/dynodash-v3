@@ -48,7 +48,37 @@
                 android:textSize="14sp"
                 android:textStyle="italic" />
 
+            <LinearLayout
+                android:id="@+id/button_linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/item_map_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/teal_200"
+                    app:icon="@drawable/ic_baseline_map_24"
+                    android:text="Map"
+                    android:padding="12dp"
+                    android:layout_marginEnd="16dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/item_share_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/teal_200"
+                    app:icon="@drawable/ic_baseline_share_24"
+                    android:text="Share"
+                    app:actionProviderClass="androidx.appcompat.widget.ShareActionProvider"
+                    android:padding="12dp"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
         </LinearLayout>
+
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

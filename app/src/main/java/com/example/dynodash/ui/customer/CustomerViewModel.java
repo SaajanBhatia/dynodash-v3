@@ -7,9 +7,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.dynodash.Utils;
 import com.example.dynodash.ui.customer.list.MenuListItem;
 import com.example.dynodash.ui.customer.list.OrderItem;
 import com.example.dynodash.ui.customer.list.RestaurantListItem;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class CustomerViewModel extends ViewModel {
 
@@ -29,6 +33,50 @@ public class CustomerViewModel extends ViewModel {
     public CustomerViewModel() {
         databaseReference = FirebaseDatabase.getInstance().getReference();
         menuItemsLiveData = new MutableLiveData<>();
+    }
+
+    public void createOrder(
+            String customerID,
+            String restaurantID,
+            Integer tableNumber,
+            List<OrderItem> orderItems,
+            Double orderTotal
+    ) {
+
+        // Get the Customer Name
+        databaseReference.child("users").child(customerID).child("name").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("CustomerViewModel:53", "Error getting data", task.getException());
+                }
+                else { // On successful fetch of customer name, saturate the order
+                    Log.d("This is the Customer View Model Order Creation", String.valueOf(task.getResult().getValue()));
+                    String customerName = String.valueOf(task.getResult().getValue());
+
+                    String orderID = Utils.generateCUID(); // Generate a new Order ID CUID
+
+                    // Input the order details
+                    DatabaseReference orderReference = databaseReference.child("restaurants").child(restaurantID).child("orders").child(orderID);
+                    orderReference.child("customerID").setValue(customerID);
+                    orderReference.child("customer_name").setValue(customerName);
+                    orderReference.child("table").setValue(tableNumber);
+                    orderReference.child("completed").setValue(false);
+
+                    // Add the order items
+                    DatabaseReference orderItemsReference = orderReference.child("items");
+
+                    for (OrderItem item : orderItems) {
+                        orderItemsReference.child(item.getItemID()).child("name").setValue(item.getItemName());
+                        orderItemsReference.child(item.getItemID()).child("price").setValue(item.getSinglePrice());
+                        orderItemsReference.child(item.getItemID()).child("quantity").setValue(item.getQuantity());
+                    }
+                    orderReference.child("orderTotal").setValue(orderTotal);
+
+                }
+            }
+        });
+
     }
 
     public LiveData<List<RestaurantListItem>> getSearchResults(String searchQuery) {

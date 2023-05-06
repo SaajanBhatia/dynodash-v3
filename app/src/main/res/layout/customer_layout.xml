@@ -28,7 +28,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/poppins_extrabold"
-            android:text="Welcome back," />
+            android:text="Welcome back" />
 
         <TextView
             android:id="@+id/welcomeNameTextView"
@@ -40,7 +40,15 @@
             android:padding="2dp"
             android:text="Name"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/customerLogOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            />
 
         <!--        Search Bar Component-->
         <LinearLayout

@@ -2,10 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.dynodash">
-
     <!--    Permission to write to storage (when downloading barcode from restaurant side   -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -46,7 +48,7 @@
             android:screenOrientation="portrait" />
 
         <!--     Customer Activity Declaration  -->
-        <activity android:name=".ui.customer.CustomerActivity" />
+        <activity android:name=".ui.customer.CustomerActivity" android:screenOrientation="portrait"/>
 
         <!--     Customer Activity Declaration For Single Restaurant View  -->
         <activity android:name=".ui.customer.CustomerRestaurantActivity" />
@@ -63,6 +65,18 @@
         <activity
             android:name=".ui.register.RegisterActivity"
             android:screenOrientation="portrait" />
+
+        <!--     Error Screen   -->
+        <activity android:name=".ui.Error" />
+
+        <!--     Broadcaster for the Network Change Events   -->
+        <receiver
+            android:name=".NetworkChangeReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
 
 
         <meta-data

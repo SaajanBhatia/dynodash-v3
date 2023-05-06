@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,10 @@ public class CustomerRestaurantActivity extends AppCompatActivity {
     private CustomerViewModel mViewModel;
     private MenuListAdapter mMenuCustomerAdapter;
     private ArrayList<OrderItem> orderedItems;
+    private String restaurantNameIntentRead;
+    private String restaurantDescIntentRead;
+    private String restaurantAddrIntentRead;
+    private LinearLayout buttonConsole;
 
     public void setSharedPrefs() {
         Gson gson = new Gson();
@@ -47,16 +52,6 @@ public class CustomerRestaurantActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("ordered_items", json);
         editor.apply();
-    }
-
-    public ArrayList<OrderItem> getSharedPrefs() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        String json = sharedPreferences.getString("ordered_items", "");
-
-        Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<OrderItem>>(){}.getType();
-        ArrayList<OrderItem> orderedItems = gson.fromJson(json, type);
-        return orderedItems;
     }
 
     @Override
@@ -75,6 +70,11 @@ public class CustomerRestaurantActivity extends AppCompatActivity {
         // Get the restaurantID from the intent
         restaurantID = getIntent().getStringExtra("restaurantID");
 
+        // Get the restaurant details from the intent
+        restaurantNameIntentRead = getIntent().getStringExtra("restaurantName");
+        restaurantDescIntentRead = getIntent().getStringExtra("restaurantDesc");
+        restaurantAddrIntentRead = getIntent().getStringExtra("restaurantAddr");
+
         // Declare UI Items
         checkoutButton = findViewById(R.id.fab);
 
@@ -83,15 +83,19 @@ public class CustomerRestaurantActivity extends AppCompatActivity {
         restaurantDesc = findViewById(R.id.restaurant_customer_description);
         restaurantAddr = findViewById(R.id.restaurant_customer_address);
 
-        // Set restaurant details from ViewModel data
-        restaurantName.setText("Dynasty");
-        restaurantAddr.setText("116 The Brazeria, Loughborough");
-        restaurantDesc.setText("This is a sample description for a restaurant have fun! We serve only the rich elite.");
+        // Set restaurant details from Intent Data
+        restaurantName.setText(!restaurantNameIntentRead.isEmpty() ? restaurantNameIntentRead : "Restaurant Name");
+        restaurantDesc.setText(!restaurantDescIntentRead.isEmpty() ? restaurantDescIntentRead : "Restaurant Description");
+        restaurantAddr.setText(!restaurantAddrIntentRead.isEmpty() ? restaurantAddrIntentRead : "Restaurant Address");
 
         // Recycler View Declaration
         menuItemsRecycler.setLayoutManager(new LinearLayoutManager(this));
         mMenuCustomerAdapter = new MenuListAdapter();
         menuItemsRecycler.setAdapter(mMenuCustomerAdapter);
+
+        // Hide the map component on restaurant activity screen
+        buttonConsole = findViewById(R.id.button_linear_layout);
+        buttonConsole.setVisibility(View.GONE);
 
         // Saturate Recycler View from ViewModel
         mViewModel.getMenuItems(restaurantID).observe(CustomerRestaurantActivity.this, new Observer<List<MenuListItem>>() {
@@ -102,6 +106,8 @@ public class CustomerRestaurantActivity extends AppCompatActivity {
             }
         });
 
+        Intent intentFetches = getIntent();
+
         // Checkout Listener
         checkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +117,12 @@ public class CustomerRestaurantActivity extends AppCompatActivity {
                     // When clicked, open intent passing the ordered items array
                     Intent intent = new Intent(CustomerRestaurantActivity.this, CustomerRestaurantCheckout.class);
                     intent.putExtra("restaurantID", restaurantID);// Pass the restaurant ID through intent
+
+                    // If intent has table number than forward it
+                    if (intentFetches.hasExtra("tableNumber")) {
+                        intent.putExtra("tableNumber", intent.getStringExtra("tableNumber"));
+                    }
+
                     CustomerRestaurantActivity.this.startActivity(intent);
                 } else {
                     Toast.makeText(CustomerRestaurantActivity.this, "Basket is empty", Toast.LENGTH_SHORT).show();
