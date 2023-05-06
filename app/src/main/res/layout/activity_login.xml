@@ -61,7 +61,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:text="saajansbhatia@gmail.com"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -78,8 +77,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:text="Discovery_18"/>
+                    android:inputType="textPassword"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,6 +98,16 @@
                 app:backgroundTint="@color/teal_700"
                 android:text="@string/login_to_register_text"/>
 
+            <Button
+                android:id="@+id/webViewHelpTrigger"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="70dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/error_red"
+                app:backgroundTint="@color/error_red"
+                android:text="Web View Help"/>
+
             <!--        Error Handler       -->
             <TextView
                 android:id="@+id/errorMessageTextView"
@@ -114,6 +122,5 @@
         </LinearLayout>
 
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

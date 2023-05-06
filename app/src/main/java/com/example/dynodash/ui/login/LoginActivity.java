@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dynodash.R;
 import com.example.dynodash.Utils;
+import com.example.dynodash.ui.HelpWebView;
 import com.example.dynodash.ui.register.RegisterActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText mPasswordEditText;
     private Button mLoginButton;
     private Button linkToRegisterButton;
+    private Button webViewTrigger;
     private TextView mErrorMessageTextView;
 
     private FirebaseAuth mAuth;
@@ -52,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         mUsernameEditText = (TextInputEditText) mUsernameLayout.getEditText();
         mPasswordEditText = (TextInputEditText) mPasswordLayout.getEditText();
         mLoginButton = findViewById(R.id.loginButton);
+        webViewTrigger = findViewById(R.id.webViewHelpTrigger);
         mErrorMessageTextView = findViewById(R.id.errorMessageTextView);
 
         linkToRegisterButton = findViewById(R.id.linkToRegisterFrame);
@@ -61,6 +65,15 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 finish();
+            }
+        });
+
+        // WebView button listener
+        webViewTrigger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HelpWebView.class);
+                startActivity(intent);
             }
         });
 
