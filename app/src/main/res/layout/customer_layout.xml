@@ -28,7 +28,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/poppins_extrabold"
-            android:text="Welcome back" />
+            android:text="Welcome" />
 
         <TextView
             android:id="@+id/welcomeNameTextView"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
-                android:hint="Search Restaurants"
+                android:hint="Search 'all' for all"
                 android:inputType="text"
                 android:maxLines="1" />
 

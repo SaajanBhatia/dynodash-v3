@@ -34,4 +34,13 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <!--  Helper Text Values  -->
+    <string name="helper_1">Customer Login: eee1@gmail.com, eee123</string>
+    <string name="helper_2">Restaurant Login: eee2@gmail.com, eee123</string>
+
+    <!--  Error Text Values  -->
+    <string name="error_primary">Whoops!</string>
+    <string name="error_secondary">Please Connect to WiFi</string>
+    <string name="error_retry_button">Retry</string>
 </resources>

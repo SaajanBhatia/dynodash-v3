@@ -82,6 +82,8 @@ public class CustomerViewModel extends ViewModel {
     public LiveData<List<RestaurantListItem>> getSearchResults(String searchQuery) {
         MutableLiveData<List<RestaurantListItem>> searchResultsLiveData = new MutableLiveData<>();
 
+        // If user searches all then show all
+
         Query query = databaseReference.child("restaurants");
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -95,15 +97,22 @@ public class CustomerViewModel extends ViewModel {
                     String description = restaurantSnapshot.child("description").getValue(String.class);
                     String address = restaurantSnapshot.child("address").getValue(String.class);
 
-                    if (name != null && name.toLowerCase().startsWith(searchQuery.toLowerCase())) {
-                        RestaurantListItem restaurant = new RestaurantListItem(
-                                name,
-                                description,
-                                address,
-                                id
-                        );
+                    RestaurantListItem restaurant = new RestaurantListItem(
+                            name,
+                            description,
+                            address,
+                            id
+                    );
+
+                    if (!searchQuery.toLowerCase().equals("all")) {
+                        if (name != null && name.toLowerCase().startsWith(searchQuery.toLowerCase())) {
+                            searchResultsList.add(restaurant);
+                        }
+                    } else {
                         searchResultsList.add(restaurant);
                     }
+
+
                 }
 
                 searchResultsLiveData.setValue(searchResultsList);

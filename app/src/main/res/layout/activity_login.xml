@@ -81,6 +81,20 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:text="@string/helper_1"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:text="@string/helper_2"
+                />
+
             <Button
                 android:id="@+id/loginButton"
                 android:layout_width="match_parent"
@@ -107,6 +121,7 @@
                 android:background="@color/error_red"
                 app:backgroundTint="@color/error_red"
                 android:text="Web View Help"/>
+
 
             <!--        Error Handler       -->
             <TextView

@@ -16,7 +16,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Whoops"
+        android:text="@string/error_primary"
         android:textSize="40dp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
@@ -25,7 +25,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please connect to WiFi"
+        android:text="@string/error_secondary"
         android:textSize="16sp"
         android:layout_marginTop="8dp"
         android:textColor="@color/error_red"
@@ -34,7 +34,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Retry!"
+        android:text="@string/error_retry_button"
         android:textColor="@color/white"
         android:backgroundTint="@color/error_red"
         android:padding="16dp"
